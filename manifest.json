@@ -50,17 +50,17 @@
   ],
   "screenshots": [
     {
-      "src": "/img/screenshots/screenshot1.png",
+      "src": "img/screenshots/screenshot1.png",
       "type": "image/png",
       "sizes": "540x720"
     },
     {
-      "src": "/img/screenshots/screenshot1.jpg",
+      "src": "img/screenshots/screenshot1.jpg",
       "type": "image/jpg",
       "sizes": "540x720"
     },
     {
-      "src": "/img/screenshots/screenshot2.jpg",
+      "src": "img/screenshots/screenshot2.jpg",
       "type": "image/jpg",
       "sizes": "824x500",
       "form_factor": "wide"
