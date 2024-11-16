@@ -16,7 +16,7 @@ html {
 }
 
 html, body {
-  padding: calc(env(safe-area-inset-top) - 7rem) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  padding: calc(env(safe-area-inset-top) - 5rem) env(safe-area-inset-right) 0 env(safe-area-inset-left);
   min-height: -webkit-fill-available;
   margin: 0px !important;
   color: #7f8c8d;
