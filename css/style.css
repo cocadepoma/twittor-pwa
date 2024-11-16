@@ -256,18 +256,21 @@ textarea {
 
   .first {
     width: 100%;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     position: fixed;
     z-index: 999;
     top: 0px;
+    height: 7rem;
 
     margin: auto;
     background-color: #3498db;
     text-shadow: #2084c7 1px 1px 0;
-    padding: 1em 0 !important;
+    padding: calc(env(safe-area-inset-top) + 10px) 20px 20px 20px !important;
     color: white;
     text-align: center;
-    /* margin-top: 1em; */
     font-family: "Lato";
     font-size: 1.6em;
 }
@@ -288,13 +291,13 @@ and (-webkit-device-pixel-ratio : 3) {
       top: 40px !important;
     }
     
-    .new {
+    /* .new {
       top: 40px !important;
     }
     
     .out {
       top: 40px !important;
-    }
+    } */
 
 }
 
@@ -302,7 +305,7 @@ and (-webkit-device-pixel-ratio : 3) {
   .icon-twitter {
     font-size: 1.5em; }
   
-  .new {
+  /* .new {
     position: absolute;
     right: 5%; 
     top: 30px;
@@ -312,7 +315,7 @@ and (-webkit-device-pixel-ratio : 3) {
     position: absolute;
     left: 5%;
     top: 30px;
-  }
+  } */
   
   .over-bubble {
     line-height: 1.4em;
