@@ -16,7 +16,7 @@ html {
 }
 
 html, body {
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  padding: calc(env(safe-area-inset-top) - 7rem) env(safe-area-inset-right) 0 env(safe-area-inset-left);
   min-height: -webkit-fill-available;
   margin: 0px !important;
   color: #7f8c8d;
@@ -72,9 +72,9 @@ html, body {
   -o-border-radius: 50%;
   border-radius: 50%;
   border: 2px solid #ecf0f1;
-  position: absolute;
-  right: 15px;
-  top: 20px;
+  /* position: absolute; */
+  /* right: 15px; */
+  /* top: 20px; */
   z-index: 99999;
 }
 
@@ -98,8 +98,8 @@ html, body {
 }
 
 #cancel-btn {
-  position: absolute;
-  left: 5%;
+  /* position: absolute; */
+  /* left: 5%; */
   z-index: 9999;
 }
 
@@ -273,6 +273,12 @@ textarea {
     text-align: center;
     font-family: "Lato";
     font-size: 1.6em;
+}
+
+.first:has(span) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Iphone X fix */
