@@ -16,8 +16,7 @@ html {
 }
 
 html, body {
-  padding: calc(env(safe-area-inset-top) - 5rem) env(safe-area-inset-right) 0 env(safe-area-inset-left);
-  min-height: -webkit-fill-available;
+  padding: calc(env(safe-area-inset-top) - 1rem) env(safe-area-inset-right) 0 env(safe-area-inset-left);
   margin: 0px !important;
   color: #7f8c8d;
   font-size: 16px;
@@ -31,9 +30,9 @@ html, body {
 }
 
 .seleccion {
-  margin-top: 6em;
+  margin-top: 1rem;
   display: block;
-  margin-bottom: 6em;
+  margin-bottom: 1rem;
 }
 
 .seleccion div {
@@ -62,7 +61,9 @@ html, body {
   opacity: 0;
 }
 
-
+#salir-btn {
+  transform: rotate(180deg);
+}
 
 #modal-avatar {
   width: 50px;
@@ -79,7 +80,7 @@ html, body {
 }
 
 .nuevo-mensaje {
-  margin-top: 6em;
+  margin-top: 1rem;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -214,7 +215,7 @@ textarea {
     border-right: 20px solid #ecf0f1; }
   
   .timeline {
-    margin-top: 6em;
+    margin-top: 1rem;
     width: 100%;
     display: block;
     list-style-type: none;
@@ -260,10 +261,10 @@ textarea {
     align-items: center;
     justify-content: space-between;
 
-    position: fixed;
+    position: sticky;
     z-index: 999;
     top: 0px;
-    height: 7rem;
+    height: 6.5rem;
 
     margin: auto;
     background-color: #3498db;
@@ -273,12 +274,6 @@ textarea {
     text-align: center;
     font-family: "Lato";
     font-size: 1.6em;
-}
-
-.first:has(#salit-btn:has(.oculto)) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Iphone X fix */
