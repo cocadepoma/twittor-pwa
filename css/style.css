@@ -16,7 +16,6 @@ html {
 }
 
 html, body {
-  padding: calc(env(safe-area-inset-top) - 1rem) env(safe-area-inset-right) 0 env(safe-area-inset-left);
   margin: 0px !important;
   color: #7f8c8d;
   font-size: 16px;
