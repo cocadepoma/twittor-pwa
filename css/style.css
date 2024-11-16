@@ -275,7 +275,7 @@ textarea {
     font-size: 1.6em;
 }
 
-.first:has(span) {
+.first:has(#salit-btn:has(.oculto)) {
   display: flex;
   align-items: center;
   justify-content: space-between;
