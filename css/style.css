@@ -8,8 +8,7 @@
 
 
 html {
-  min-height: calc(100% + env(safe-area-inset-top));
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  /* min-height: calc(100% + env(safe-area-inset-top)); */
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -17,6 +16,8 @@ html {
 }
 
 html, body {
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  min-height: -webkit-fill-available;
   margin: 0px !important;
   color: #7f8c8d;
   font-size: 16px;
