@@ -9,8 +9,8 @@ if ( navigator.serviceWorker ) {
     }
 }
 
-// Referencias de jQuery
 
+// Referencias de jQuery
 var titulo      = $('#titulo');
 var nuevoBtn    = $('#nuevo-btn');
 var salirBtn    = $('#salir-btn');
