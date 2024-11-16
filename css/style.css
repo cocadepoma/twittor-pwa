@@ -5,16 +5,23 @@
     font-family: 'Quicksand';
   }
   
-  html, body {
-    margin: 0px !important;
-    color: #7f8c8d;
-    font-size: 16px;
-    background-color: #dde1e2; 
-    width: 100%;
-    -webkit-user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    overscroll-behavior-y: contain;
+
+
+html {
+  min-height: calc(100% + env(safe-area-inset-top));
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  overscroll-behavior-y: contain;
+}
+
+html, body {
+  margin: 0px !important;
+  color: #7f8c8d;
+  font-size: 16px;
+  background-color: #dde1e2; 
+  width: 100%;
 }
 
 /* Personalizados */
