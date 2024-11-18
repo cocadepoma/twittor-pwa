@@ -1,4 +1,5 @@
 const url = window.location.href;
+const API_URL = `${ window.location.origin }/api/`;
 const swLocation = '/twittor-pwa/sw.js';
 
 if ( navigator.serviceWorker ) {
@@ -111,24 +112,80 @@ nuevoBtn.on('click', function() {
 
 // Boton de cancelar mensaje
 cancelarBtn.on('click', function() {
-   modal.animate({ 
-       marginTop: '+=1000px',
-       opacity: 0
-    }, 200, function() {
-        modal.addClass('oculto');
-        txtMensaje.val('');
-    });
+    if ( !modal.hasClass('oculto') ) {
+        modal.animate({ 
+            marginTop: '+=1000px',
+            opacity: 0
+         }, 200, function() {
+             modal.addClass('oculto');
+             txtMensaje.val('');
+         });
+    }
 });
 
 // Boton de enviar mensaje
 postBtn.on('click', function() {
 
-    var mensaje = txtMensaje.val();
-    if ( mensaje.length === 0 ) {
+    var message = txtMensaje.val();
+    if ( message.length === 0 ) {
         cancelarBtn.click();
         return;
     }
 
-    crearMensajeHTML( mensaje, usuario );
-
+    postMessage( message, usuario );
+    crearMensajeHTML( message, usuario );
 });
+
+
+// Post messages to server
+function postMessage(message, user) {
+    
+    fetch('api', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message, user })
+    })
+    .then( res => res.json() )
+    .then( data => {
+        console.log('Mensaje guardado', data);
+    })
+    .catch( err => {
+        console.log('Error en envio', err);
+    });
+}
+
+// Get messages from server
+function getMessages() {
+    fetch('api')
+        .then( res => res.json() )
+        .then( posts => {
+            console.log(posts)
+            posts.forEach( post => {
+                crearMensajeHTML( post.message, post.user );
+            });
+        });
+}
+
+getMessages();
+
+window.addEventListener('online',isOnline);
+window.addEventListener('offline', isOnline);
+
+function isOnline() {
+    if (navigator.onLine) {
+        $.mdtoast('Online', {
+            interaction: true,
+            interactionTimeout: 1000,
+            actionText: 'Ok!',
+            type: 'success'
+        });
+    } else {
+        $.mdtoast('Offline', {
+            interaction: true,
+            actionText: 'Ok!',
+            type: 'warning'
+        });
+    }
+}

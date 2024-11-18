@@ -1,9 +1,11 @@
 // imports
+importScripts('js/libs/dexie.js');
+importScripts('js/sw-db.js');
 importScripts('js/sw-utils.js');
 
-const STATIC_CACHE = 'static-v1';
-const DYNAMIC_CACHE = 'dynamic-v1';
-const INMUTABLE_CACHE = 'inmutable-v1';
+const STATIC_CACHE = 'static-v2';
+const DYNAMIC_CACHE = 'dynamic-v2';
+const INMUTABLE_CACHE = 'inmutable-v2';
 
 const APP_SHELL = [
   // '/',
@@ -17,6 +19,9 @@ const APP_SHELL = [
   'img/avatars/wolverine.jpg',
   'js/app.js',
   'js/sw-utils.js',
+  'js/sw-db.js',
+  'js/libs/mdtoast.min.js',
+  'js/libs/mdtoast.min.css',
 ];
 
 const APP_SHELL_INMUTABLE = [
@@ -25,6 +30,7 @@ const APP_SHELL_INMUTABLE = [
   'css/animate.css',
   'js/libs/font-awesome.css',
   'js/libs/jquery.js',
+  'js/libs/dexie.js',
 ];
 
 self.addEventListener('install', (e) => {
@@ -37,6 +43,8 @@ self.addEventListener('install', (e) => {
   });
 
   e.waitUntil(Promise.all([cacheStatic, cacheInmutable]));
+
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (e) => {
@@ -57,16 +65,31 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   if(e.request.url.startsWith('chrome-extension://')) return;
+  let resp;
 
-  const resp = caches.match(e.request).then((res) => {
-    if (res) {
-      return res;
-    }
-
-    return fetch(e.request).then((newRes) => {
-      return updateDynamicCache(DYNAMIC_CACHE, e.request, newRes);
+  if(e.request.url.includes('/api')) {
+    resp = handleApiMessages(DYNAMIC_CACHE, e.request);
+  } else {
+    resp = caches.match(e.request).then((res) => {
+      if (res) {
+        updateStaticCache(STATIC_CACHE, e.request, APP_SHELL_INMUTABLE);
+        return res;
+      }
+  
+      return fetch(e.request).then((newRes) => {
+        return updateDynamicCache(DYNAMIC_CACHE, e.request, newRes);
+      });
     });
-  });
+  }
 
   e.respondWith(resp);
+});
+
+self.addEventListener('sync', (e) => {
+  console.log('SW: Sync', e);
+  if (e.tag === 'new-message') {
+  
+    const resp = postMessages();
+    e.waitUntil(resp);
+  }
 });
